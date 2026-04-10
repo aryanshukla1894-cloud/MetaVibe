@@ -6,9 +6,6 @@ const morgan = require('morgan');
 
 dotenv.config();
 
-// const connectDB = require('./config/db');
-// connectDB(); // Uncomment when MongoDB is running locally
-
 const app = express();
 
 app.use(express.json());
@@ -36,4 +33,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Export the app for Vercel serverless deployment instead of listening directly
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
