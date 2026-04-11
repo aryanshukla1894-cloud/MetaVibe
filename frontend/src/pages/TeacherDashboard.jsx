@@ -31,38 +31,91 @@ const TeacherDashboard = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-surface p-6 rounded-2xl shadow-lg border border-red-900/50"
+                        className="relative overflow-visible group z-10"
                     >
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                            </span>
-                            <h3 className="text-xl font-bold text-red-400">Student Wellbeing Alerts</h3>
-                        </div>
-                        <div className="space-y-4">
-                            <div className="bg-slate-800/50 p-4 rounded-xl border-l-4 border-red-500">
-                                <div className="flex justify-between items-center">
-                                    <h4 className="font-bold">Student: Alex Doe</h4>
-                                    <span className="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-lg">10 min ago</span>
-                                </div>
-                                <p className="text-sm text-slate-300 mt-2">High stress detected (Level 8/10). Mood reported: 😫</p>
-                                <div className="flex gap-3 mt-3">
-                                    <button className="text-sm text-accent hover:underline">💬 Message</button>
-                                    <button className="text-sm text-purple-400 hover:underline">📊 View Profile</button>
-                                </div>
-                            </div>
+                        {/* Glowing Background Effect */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 rounded-[1.5rem] blur opacity-40 group-hover:opacity-75 transition duration-500 will-change-transform"></div>
+                        
+                        <div className="relative bg-surface/95 backdrop-blur-3xl p-6 md:p-8 rounded-[1.4rem] border border-red-500/20 shadow-2xl overflow-hidden h-full">
+                            {/* Inner ambient glow */}
+                            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-red-500/10 rounded-full blur-[80px] pointer-events-none"></div>
 
-                            <div className="bg-slate-800/50 p-4 rounded-xl border-l-4 border-yellow-500">
-                                <div className="flex justify-between items-center">
-                                    <h4 className="font-bold">Student: Sarah Jenkins</h4>
-                                    <span className="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-lg">1 hr ago</span>
+                            <div className="flex items-center justify-between mb-8 relative z-10">
+                                <div className="flex items-center gap-3">
+                                    <div className="relative flex h-5 w-5 items-center justify-center">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,1)]"></span>
+                                    </div>
+                                    <h3 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-pink-400 to-red-400 tracking-tight">Wellbeing Alerts</h3>
                                 </div>
-                                <p className="text-sm text-slate-300 mt-2">Decrease in performance. Learning speed: Average → Slow.</p>
-                                <div className="flex gap-3 mt-3">
-                                    <button className="text-sm text-accent hover:underline">📝 AI Recommendations</button>
-                                    <button className="text-sm text-purple-400 hover:underline">📊 View Profile</button>
-                                </div>
+                                <span className="px-4 py-1.5 bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-black uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(239,68,68,0.15)] flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                                    2 Action Required
+                                </span>
+                            </div>
+                            
+                            <div className="space-y-5 relative z-10">
+                                {/* Alert Card 1 */}
+                                <motion.div whileHover={{ scale: 1.015, y: -2 }} transition={{ type: "spring", stiffness: 400 }} className="relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 p-5 rounded-2xl border border-red-500/20 hover:border-red-500/50 transition-all shadow-lg overflow-hidden group/card text-left">
+                                    <div className="absolute left-0 top-0 w-1.5 h-full bg-gradient-to-b from-red-500 to-pink-500 shadow-[0_0_15px_rgba(239,68,68,0.8)]"></div>
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-red-500/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity blur-lg pointer-events-none"></div>
+                                    
+                                    <div className="flex justify-between items-start pl-2">
+                                        <div>
+                                            <div className="flex items-center gap-3 mb-1.5">
+                                                <h4 className="font-bold text-slate-100 text-lg">Alex Doe</h4>
+                                                <span className="px-2 py-0.5 bg-red-500/20 text-red-300 text-[10px] uppercase font-black tracking-wider rounded border border-red-500/20">Critical Risk</span>
+                                            </div>
+                                            <p className="text-sm text-slate-300 flex items-center gap-2 bg-slate-900/50 inline-flex px-3 py-1.5 rounded-lg border border-slate-700/50 mt-1">
+                                                <span className="text-xl">😫</span> <span className="font-medium">High stress detected (Level 8/10)</span>
+                                            </p>
+                                        </div>
+                                        <span className="text-xs font-medium text-slate-400 flex items-center gap-1.5 bg-slate-800/80 px-2.5 py-1.5 rounded-md border border-slate-700 shadow-inner">
+                                            <svg className="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            10m ago
+                                        </span>
+                                    </div>
+                                    <div className="flex gap-3 mt-5 pt-4 border-t border-slate-700/50 pl-2">
+                                        <button className="flex-1 py-2.5 bg-gradient-to-r from-red-500/10 to-red-500/5 hover:from-red-500/20 hover:to-red-500/10 text-red-400 text-sm font-bold rounded-xl transition-all border border-red-500/20 hover:border-red-500/40 flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                                            💬 Message Instantly
+                                        </button>
+                                        <button className="flex-1 py-2.5 bg-slate-800/50 hover:bg-slate-700/80 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700 hover:border-slate-500 flex items-center justify-center gap-2">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                            View Profile
+                                        </button>
+                                    </div>
+                                </motion.div>
+
+                                {/* Alert Card 2 */}
+                                <motion.div whileHover={{ scale: 1.015, y: -2 }} transition={{ type: "spring", stiffness: 400 }} className="relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 p-5 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/50 transition-all shadow-lg overflow-hidden group/card text-left">
+                                    <div className="absolute left-0 top-0 w-1.5 h-full bg-gradient-to-b from-yellow-400 to-orange-500 shadow-[0_0_15px_rgba(234,179,8,0.8)]"></div>
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity blur-lg pointer-events-none"></div>
+                                    
+                                    <div className="flex justify-between items-start pl-2">
+                                        <div>
+                                            <div className="flex items-center gap-3 mb-1.5">
+                                                <h4 className="font-bold text-slate-100 text-lg">Sarah Jenkins</h4>
+                                                <span className="px-2 py-0.5 bg-yellow-500/20 text-yellow-500 text-[10px] uppercase font-black tracking-wider rounded border border-yellow-500/20">Warning</span>
+                                            </div>
+                                            <p className="text-sm text-slate-300 flex items-center gap-2 bg-slate-900/50 inline-flex px-3 py-1.5 rounded-lg border border-slate-700/50 mt-1">
+                                                <span className="text-xl">📉</span> <span className="font-medium">Performance drop: Average → Slow</span>
+                                            </p>
+                                        </div>
+                                        <span className="text-xs font-medium text-slate-400 flex items-center gap-1.5 bg-slate-800/80 px-2.5 py-1.5 rounded-md border border-slate-700 shadow-inner">
+                                             <svg className="w-3.5 h-3.5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            1 hr ago
+                                        </span>
+                                    </div>
+                                    <div className="flex gap-3 mt-5 pt-4 border-t border-slate-700/50 pl-2">
+                                        <button className="flex-1 py-2.5 bg-gradient-to-r from-yellow-500/10 to-yellow-500/5 hover:from-yellow-500/20 hover:to-yellow-500/10 text-yellow-500 text-sm font-bold rounded-xl transition-all border border-yellow-500/20 hover:border-yellow-500/40 flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(234,179,8,0.15)]">
+                                            🤖 AI Recommendations
+                                        </button>
+                                        <button className="flex-1 py-2.5 bg-slate-800/50 hover:bg-slate-700/80 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700 hover:border-slate-500 flex items-center justify-center gap-2">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                            View Profile
+                                        </button>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
                     </motion.div>
